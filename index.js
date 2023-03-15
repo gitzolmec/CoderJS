@@ -2,8 +2,10 @@
 const Menu = [1, 2, 3, 4]
 let continuar = 0
 let continuarAD = 0
+let continuarDel = 0
 let opcionValida
 let opcion = 0
+let opcionBorrar
 
 
 //array de productos
@@ -41,8 +43,8 @@ function agregarProductos() {
         inicio()
     } else {
         //si el id ya existe no se continua agregando ese producto
-        continuarAD = parseInt(prompt("ID existente, seleccione una opcion para continuar: \n\n 1.continuar agregando productos \n 2.volver al menu principal"))
-        validarOpcion(continuarAD);
+      
+        validarOpcion();
     }
 
 
@@ -51,26 +53,46 @@ function agregarProductos() {
 }
 //funcion que valida si se quiere seguir agregando productos o volver al menu principal 
 function validarOpcion(opcion){
-    if (opcion===1){
+    let opcionAd = parseInt(prompt("ID existente, seleccione una opcion para continuar: \n\n 1.continuar agregando productos \n 2.volver al menu principal"))
+    if (opcionAd===1){
         agregarProductos();
-    }else if (opcion===2){
+    }else if (opcionAd===2){
         opcionValida = false;
         inicio();
-    }else {  
+    }else {
+        alert("opcion invalida")
+        validarOpcion()
     }
 
 }
 //funcion para eliminar productos ingresando el id 
 function borrarProductos() {
     let idEliminar = prompt("ingrese el id del producto a eliminar:")
+    opcionBorrar = inventariojuegos.some((elemento) => elemento.id === idEliminar);
 
+    if(opcionBorrar){
     let indiceBorrar = inventariojuegos.findIndex(
         (inventariojuegos) => Number(inventariojuegos.id) === Number(idEliminar));
 
     inventariojuegos.splice(indiceBorrar, 1)
-   
+    }else{
+         validarOpcionBorrar();
+    }
 }
 
+function validarOpcionBorrar(){
+
+   let opcion = parseInt(prompt("el ID ingresado no existe, seleccione una opcion para continuar: \n\n 1.continuar borrando productos \n 2.volver al menu principal"))
+    if (opcion===1){
+        borrarProductos();
+    }else if (opcion===2){
+        opcionValida = false;
+        inicio();
+    }else { 
+        alert("opcion invalida")
+        validarOpcionBorrar()
+    }
+}
 //funcion que muestra el inventario por consola
 function mostrarInventario() {
     console.log(inventariojuegos)
