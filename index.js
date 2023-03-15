@@ -38,28 +38,28 @@ function agregarProductos() {
         let nombre = prompt("ingrese nombre del producto")
         let valor = parseFloat(prompt("ingrese valor del producto"))
         let cantidad = parseInt(prompt("ingrese cantidad del producto"))
-        let newProducto = new Producto( id, nombre, valor, cantidad)
+        let newProducto = new Producto(id, nombre, valor, cantidad)
         inventariojuegos.push(newProducto)
         inicio()
     } else {
         //si el id ya existe no se continua agregando ese producto
-      
+
         validarOpcion();
     }
 
 
-    
+
 
 }
 //funcion que valida si se quiere seguir agregando productos o volver al menu principal 
-function validarOpcion(opcion){
+function validarOpcion(opcion) {
     let opcionAd = parseInt(prompt("ID existente, seleccione una opcion para continuar: \n\n 1.continuar agregando productos \n 2.volver al menu principal"))
-    if (opcionAd===1){
+    if (opcionAd === 1) {
         agregarProductos();
-    }else if (opcionAd===2){
+    } else if (opcionAd === 2) {
         opcionValida = false;
         inicio();
-    }else {
+    } else {
         alert("opcion invalida")
         validarOpcion()
     }
@@ -67,28 +67,29 @@ function validarOpcion(opcion){
 }
 //funcion para eliminar productos ingresando el id 
 function borrarProductos() {
-    let idEliminar = prompt("ingrese el id del producto a eliminar:")
-    opcionBorrar = inventariojuegos.some((elemento) => elemento.id === idEliminar);
+    let idEliminar = parseInt(prompt("ingrese el id del producto a eliminar:"))
+    let opcionBorrar = inventariojuegos.some((elemento) => elemento.id === idEliminar);
+   
 
-    if(opcionBorrar){
-    let indiceBorrar = inventariojuegos.findIndex(
-        (inventariojuegos) => Number(inventariojuegos.id) === Number(idEliminar));
+    if (opcionBorrar === true) {
+        let indiceBorrar = inventariojuegos.findIndex(
+            (inventariojuegos) => Number(inventariojuegos.id) === Number(idEliminar));
 
-    inventariojuegos.splice(indiceBorrar, 1)
-    }else{
-         validarOpcionBorrar();
+        inventariojuegos.splice(indiceBorrar, 1)
+    } else {
+        validarOpcionBorrar();
     }
 }
 
-function validarOpcionBorrar(){
-
-   let opcion = parseInt(prompt("el ID ingresado no existe, seleccione una opcion para continuar: \n\n 1.continuar borrando productos \n 2.volver al menu principal"))
-    if (opcion===1){
+function validarOpcionBorrar() {
+    
+    let opcion = parseInt(prompt("el ID ingresado no existe, seleccione una opcion para continuar: \n\n 1.continuar borrando productos \n 2.volver al menu principal"))
+    if (opcion === 1) {
         borrarProductos();
-    }else if (opcion===2){
+    } else if (opcion === 2) {
         opcionValida = false;
         inicio();
-    }else { 
+    } else {
         alert("opcion invalida")
         validarOpcionBorrar()
     }
@@ -113,10 +114,10 @@ function continuarOperando() {
     }
 }
 
-function volverAlMenu(elemento){
-    if(elemento<3){
+function volverAlMenu(elemento) {
+    if (elemento < 3) {
         inicio()
-    }else{}
+    } else { }
 }
 
 
@@ -124,7 +125,7 @@ function volverAlMenu(elemento){
 function inicio() {
     opcion = parseInt(prompt("seleccione la opcion que necesita, marque solo el numero: \n \n 1. Agregar Producto \n 2. Borrar Producto \n 3. Mostrar Inventario \n 4. Salir"))
     opcionValida = Menu.some((elemento) => elemento === opcion) //valida si la opcion ingresada es una opcion valida segun el menu comparando la opcion ingresada por el usuario con el array menu
-    
+
     if (opcionValida) {
         switch (opcion) {
             case 1:
@@ -138,15 +139,15 @@ function inicio() {
             case 3:
                 mostrarInventario()
                 alert("inventario mostrado en consola")
-                
+
                 break;
             case 4:
-                
+
                 opcionValida = false;
                 break;
         }
-    
-       volverAlMenu(opcion);
+
+        volverAlMenu(opcion);
     } else {
         alert("opcion invalida")
         inicio()
