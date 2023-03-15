@@ -69,7 +69,6 @@ function validarOpcion(opcion) {
 function borrarProductos() {
     let idEliminar = parseInt(prompt("ingrese el id del producto a eliminar:"))
     let opcionBorrar = inventariojuegos.some((elemento) => elemento.id === idEliminar);
-   
 
     if (opcionBorrar === true) {
         let indiceBorrar = inventariojuegos.findIndex(
@@ -82,7 +81,7 @@ function borrarProductos() {
 }
 
 function validarOpcionBorrar() {
-    
+
     let opcion = parseInt(prompt("el ID ingresado no existe, seleccione una opcion para continuar: \n\n 1.continuar borrando productos \n 2.volver al menu principal"))
     if (opcion === 1) {
         borrarProductos();
